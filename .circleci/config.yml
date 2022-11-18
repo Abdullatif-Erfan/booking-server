@@ -7,5 +7,6 @@ jobs:
     steps:
       # Checkout will check the code from github
       - checkout
+      # Install packages
       - run: npm install
       - run: npm test
