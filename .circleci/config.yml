@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:16.13.0
     working_directory: ~/repo
     steps:
+      # Checkout will check the code from github
       - checkout
       - run: npm install
       - run: npm test
