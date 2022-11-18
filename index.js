@@ -21,38 +21,38 @@ app.use((req, res, next) => {
   next();
 });
 
-// const connect = async () => {
-//   try {
-//     await mongoose.connect(process.env.MONGO); // onlien
-//     // await mongoose.connect(process.env.MONGOOFFLINE);
-//     console.log("Connected to MongoDB");
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+const connect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO); // onlien
+    // await mongoose.connect(process.env.MONGOOFFLINE);
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    throw error;
+  }
+};
 
-// mongoose.connection.on("disconnected", () => {
-//   console.log("MongoDB disconnected");
-// });
+mongoose.connection.on("disconnected", () => {
+  console.log("MongoDB disconnected");
+});
 
-// mongoose.connection.on("connected", () => {
-//   console.log("MongoDB Connected");
-// });
+mongoose.connection.on("connected", () => {
+  console.log("MongoDB Connected");
+});
 
-// /**
-//  * Middleware: it is able to reatch our request and response befor sending the result to the user
-//  * next is a callback function. it is used to redirect to next middleware
-//  */
+/**
+ * Middleware: it is able to reatch our request and response befor sending the result to the user
+ * next is a callback function. it is used to redirect to next middleware
+ */
 
-// app.use(cookieParser());
-// app.use(express.json());
+app.use(cookieParser());
+app.use(express.json());
 
-// app.use("/auth", authRoute);
-// app.use("/hotels", hotelsRoute);
-// app.use("/rooms", roomsRoute);
-// app.use("/users", usersRoute);
+app.use("/auth", authRoute);
+app.use("/hotels", hotelsRoute);
+app.use("/rooms", roomsRoute);
+app.use("/users", usersRoute);
 
-// app.use("/website", websitesRoute);
+app.use("/website", websitesRoute);
 
 app.use("/test", (req, res) => {
   res.status(200).json("the booking api is working");
