@@ -9,4 +9,5 @@ jobs:
       - checkout
       # Install packages
       - run: npm install
-      - run: npm test
+      # - run: npm test
+      - run: node --version

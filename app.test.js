@@ -1,3 +1,5 @@
 describe("Test", () => {
-  it("it should run", () => {});
+  it("it should run", () => {
+    expect(1).toBe(1);
+  });
 });
