@@ -55,7 +55,7 @@ app.use("/users", usersRoute);
 app.use("/website", websitesRoute);
 
 app.use("/test", (req, res) => {
-  res.status(200).json("the booking api  is working");
+  res.status(200).json("the booking api  is working correctly");
 });
 
 app.use((err, req, res, next) => {
