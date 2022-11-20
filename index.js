@@ -9,6 +9,7 @@ import usersRoute from "./routes/users.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import websitesRoute from "./routes/website.js";
+import route_test from "./routes/route_test.js";
 
 const app = express();
 dotenv.config();
@@ -54,8 +55,29 @@ app.use("/users", usersRoute);
 
 app.use("/website", websitesRoute);
 
-app.use("/test", (req, res) => {
-  res.status(200).json("the booking api  is working correctly");
+// ------- Test Routes ---------
+app.use("/rootTest", (req, res) => {
+  res.status(200).json("root test is working correctly");
+});
+
+app.use("/route_test", route_test);
+
+app.use("/testdb", async (req, res) => {
+  try {
+    await mongoose.connect(process.env.MONGO); // onlien
+    // await mongoose.connect(process.env.MONGOOFFLINE);
+    res.status(200).json("Connected to MongoDB");
+  } catch (error) {
+    throw error;
+  }
+});
+
+app.use("/testenv", (req, res) => {
+  res.status(200).json({
+    testing: "env file",
+    mongo: process.env.MONGO,
+    port: process.env.PORT
+  });
 });
 
 app.use((err, req, res, next) => {
