@@ -10,6 +10,8 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import websitesRoute from "./routes/website.js";
 import route_test from "./routes/route_test.js";
+import featuredRoute from "./routes/featured.js";
+import akamRoute from "./routes/akam.js";
 
 const app = express();
 dotenv.config();
@@ -24,8 +26,8 @@ app.use((req, res, next) => {
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO); // onlien
-    // await mongoose.connect(process.env.MONGOOFFLINE);
+    // await mongoose.connect(process.env.MONGO); // onlien
+    await mongoose.connect(process.env.MONGOOFFLINE);
     console.log("Connected to MongoDB");
   } catch (error) {
     throw error;
@@ -52,8 +54,10 @@ app.use("/auth", authRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomsRoute);
 app.use("/users", usersRoute);
+app.use("/featured", featuredRoute);
 
 app.use("/website", websitesRoute);
+app.use("/akams", akamRoute);
 
 // ------- Test Routes ---------
 app.use("/rootTest", (req, res) => {
